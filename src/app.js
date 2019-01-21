@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { BrowserRouter, Route, Switch, Link } from "react-router-dom";
+import { BrowserRouter, Route, Switch, Link, NavLink } from "react-router-dom";
 import "./styles/styles.scss";
 import "normalize.css/normalize.css";
 
@@ -38,12 +38,12 @@ const NotFoundPage = () => (
 const Header = () => (
     <header>
         <h1>Expensify</h1>
-        <ul>
-        <li><Link to="/">Dashboard</Link></li>
-        <li><Link to="/create">Create</Link></li>
-        <li><Link to="/edit">Edit</Link></li>
-        <li><Link to="/help">Help</Link></li>
-        </ul>
+        
+        <NavLink to="/" activeClassName="is-active" exact={true}>Dashboard</NavLink>
+        <NavLink to="/create" activeClassName="is-active">Create</NavLink>
+        <NavLink to="/edit" activeClassName="is-active">Edit</NavLink>
+        <NavLink to="/help" activeClassName="is-active">Help</NavLink>
+        
     </header>
 );
 

@@ -4,16 +4,22 @@ import { createStore } from "redux";
 const store = createStore((state = { count: 0 }, action) => {
     switch (action.type) {
         case "INCREMENT":
+            const incrementBy = typeof action.incrementBy === "number" ? action.incrementBy : 1;
             return {
-                count: state.count + 1
+                count: state.count + incrementBy
             };
         case "RESET":
             return {
                 count: 0
             };
         case "DECREMENT":
+            const decrementBy = typeof action.decrementBy === "number" ? action.decrementBy : 1;
             return {
-                count: state.count - 1
+                count: state.count - decrementBy
+            };
+        case "SET":
+            return {
+                count: action.count
             };
         default:
             return state;
@@ -29,15 +35,25 @@ const store = createStore((state = { count: 0 }, action) => {
     // console.log("running");
     
 });
-console.log(store.getState());
+
+// watch for changes to store state (and do something)
+// to unsubscribe assign to variable
+const unsubscribe = store.subscribe(() => {
+    console.log(store.getState());
+});
+
 
 
 //Actions
 //increment count
 //dispatch is a method to send to the store
 store.dispatch({
-    type: "INCREMENT"
+    type: "INCREMENT",
+    incrementBy: 5
 });
+
+// unsubscribe(); //state is STILL changing, but not seen.
+
 store.dispatch({
     type: "INCREMENT"
 });
@@ -47,5 +63,13 @@ store.dispatch({
 store.dispatch({
     type: "DECREMENT"
 });
+store.dispatch({
+    type: "DECREMENT",
+    decrementBy: 10
+});
 
-console.log(store.getState());
+// SET forces use of that value
+store.dispatch({
+    type: "SET",
+    count: 101
+})

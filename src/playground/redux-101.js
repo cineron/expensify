@@ -21,10 +21,13 @@ const resetCount = () => ({
     type: "RESET"
 });
 
-const store = createStore((state = { count: 0 }, action) => {
+//This is a Reducer - changes the state
+// 1. Reducers are pure functions (the output depends *only* on the input - not something outside its scope)
+// 2. Never change state or action directly
+
+const countReducer = ((state = { count: 0 }, action) => {
     switch (action.type) {
         case "INCREMENT":
-            // const incrementBy = typeof action.incrementBy === "number" ? action.incrementBy : 1;
             return {
                 count: state.count + action.incrementBy
             };
@@ -33,7 +36,6 @@ const store = createStore((state = { count: 0 }, action) => {
                 count: 0
             };
         case "DECREMENT":
-            // const decrementBy = typeof action.decrementBy === "number" ? action.decrementBy : 1;
             return {
                 count: state.count - action.decrementBy
             };
@@ -44,17 +46,43 @@ const store = createStore((state = { count: 0 }, action) => {
         default:
             return state;
     }
-    // if statements are not usually used.
-    // if (action.type === "INCREMENT") {
-    //     return {
-    //         count: state.count + 1
-    //     };
-    // } else {
-    //     return state;
-    // }
-    // console.log("running");
-    
 });
+
+
+// const store = createStore((state = { count: 0 }, action) => {
+//     switch (action.type) {
+//         case "INCREMENT":
+//             // const incrementBy = typeof action.incrementBy === "number" ? action.incrementBy : 1;
+//             return {
+//                 count: state.count + action.incrementBy
+//             };
+//         case "RESET":
+//             return {
+//                 count: 0
+//             };
+//         case "DECREMENT":
+//             // const decrementBy = typeof action.decrementBy === "number" ? action.decrementBy : 1;
+//             return {
+//                 count: state.count - action.decrementBy
+//             };
+//         case "SET":
+//             return {
+//                 count: action.count
+//             };
+//         default:
+//             return state;
+//     }
+//     // if statements are not usually used.
+//     // if (action.type === "INCREMENT") {
+//     //     return {
+//     //         count: state.count + 1
+//     //     };
+//     // } else {
+//     //     return state;
+//     // }
+//     // console.log("running");
+    
+// });
 
 // watch for changes to store state (and do something)
 // to unsubscribe assign to variable

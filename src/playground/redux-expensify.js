@@ -24,7 +24,16 @@ const removeExpense = ({ id } = {}) => ({
     id
 });
 // EDIT_EXPENSE
+const editExpense = (id, updates) => ({
+    type: "EDIT_EXPENSE",
+    id,
+    updates
+});
 // SET_TEXT_FILTER
+const setTextFilter = (text = "") => ({
+    type: "SET_TEXT_FILTER",
+    text
+});
 // SORT_BY_DATE
 // SORT_BY_AMOUNT
 // SET_START_DATE
@@ -42,6 +51,20 @@ const expensesReducer = (state = expensesReducerDefaultState, action) => {
             return state.filter(({ id }) => {
                 return id !== action.id;
             });
+
+        case "EDIT_EXPENSE":
+            return state.map((expense) => {
+                if (expense.id === action.id) {
+                    return {
+                        ...expense,
+                        ...action.updates
+                    }
+
+                } else {
+                    return expense;
+                }
+            });
+        
         default:
             return state;
     }
@@ -56,6 +79,11 @@ const filtersReducerDefaultState = {
 };
 const filtersReducer = (state = filtersReducerDefaultState, action) => {
     switch (action.type) {
+        case "EDIT_TEXT_FILTER":
+            return {
+                ...state,
+                text: action.text,
+            };
         default:
             return state;
     }
@@ -85,6 +113,11 @@ const expenseTwo = store.dispatch(addExpense({
 
 store.dispatch(removeExpense({ id: expenseOne.expense.id }));
 
+store.dispatch(editExpense(expenseTwo.expense.id, {amount: 550} ));
+
+store.dispatch(setTextFilter("rent"));
+store.dispatch(setTextFilter(""));
+
 //the final state. What are we building?
 const demoState = {
     expenses: [{
@@ -101,3 +134,23 @@ const demoState = {
         endDate: undefined
     }
 };
+
+//obj spread operator
+// const user = {
+//     name: "Jen",
+//     age: 34
+// };
+
+// console.log({
+//     ...user
+// });
+// console.log({
+//     ...user,
+//     location: "Austin",
+//     age:47
+// });
+// console.log({
+//     age: 27,
+//     ...user,
+//     location: "Austin",
+// });

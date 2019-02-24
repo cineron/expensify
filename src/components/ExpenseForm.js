@@ -57,7 +57,7 @@ class ExpenseForm extends React.Component {
                 createdAt: this.state.createdAt.valueOf(),
                 note: this.state.note
             });
-            console.log("form submitted");
+            // console.log("form submitted");
         }
     };
 
@@ -81,7 +81,8 @@ class ExpenseForm extends React.Component {
                         />
 
                     <SingleDatePicker
-                        date={this.state.createdAt}  onDateChange={this.onDateChange} 
+                        date={this.state.createdAt}  
+                        onDateChange={this.onDateChange} 
                         focused={this.state.calendarFocused} 
                         onFocusChange={this.onFocusChange} 
                         numberOfMonths={1} 

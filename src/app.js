@@ -27,7 +27,7 @@ const store = configureStore();
 // const visibleExpenses = getVisibleExpenses(state.expenses, state.filters);
 
 // // console.log(store.getState());
-// console.log(visibleExpenses);
+console.log("testing");
 
 const jsx = (
     <Provider store={store}>

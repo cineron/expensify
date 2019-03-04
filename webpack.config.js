@@ -18,7 +18,7 @@ module.exports = (env) => {
     return {
         entry: "./src/app.js",
         output: {
-            path: path.join(__dirname, "public"),
+            path: path.join(__dirname, "public", "dist"),
             filename: "bundle.js"
         },
         // add loader, which is in a module
@@ -58,7 +58,8 @@ module.exports = (env) => {
         // set up dev server
         devServer: {
             contentBase: path.join(__dirname, "public"),
-            historyApiFallback: true
+            historyApiFallback: true,
+            publicPath: "/dist/"
         }
     };
 };

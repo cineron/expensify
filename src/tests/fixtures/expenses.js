@@ -18,6 +18,6 @@ export default [{
     id: "3",
     description: "Water",
     note: "",
-    amount: 19500,
+    amount: 4500,
     createdAt: moment(0).add(4, "days").valueOf()
 }];

@@ -11,6 +11,7 @@ import getVisibleExpenses from "./selectors/expenses";
 import "./styles/styles.scss";
 import "normalize.css/normalize.css";
 import "react-dates/lib/css/_datepicker.css";
+import "./firebase/firebase";
 
 const store = configureStore();
 
@@ -27,7 +28,7 @@ const store = configureStore();
 // const visibleExpenses = getVisibleExpenses(state.expenses, state.filters);
 
 // // console.log(store.getState());
-console.log("testing");
+// console.log("testing");
 
 const jsx = (
     <Provider store={store}>

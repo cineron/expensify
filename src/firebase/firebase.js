@@ -11,6 +11,25 @@ const config = {
 
 firebase.initializeApp(config);
 
-firebase.database().ref().set({
-    name: "Ron Wilson"
+const database = firebase.database();
+
+database.ref().set({
+    name: "Andrew Wilson",
+    age: 36,
+    isSingle: true,
+    location: {
+        city: "Austin",
+        country: "United States"
+    }
 });
+
+// database.ref().set("this is my data.");
+
+database.ref("age").set(27);
+database.ref("location/city").set("San Antonio");
+database.ref("attributes").set({
+    height: 73,
+    weight: 180
+});
+
+console.log("I made a request to change the data.");

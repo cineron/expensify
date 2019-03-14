@@ -21,6 +21,11 @@ database.ref().set({
         city: "Austin",
         country: "United States"
     }
+}).then(() => {
+    console.log("data is saved");
+    
+}).catch((e) => {
+    console.log(`this failed ${e}`);
 });
 
 // database.ref().set("this is my data.");
@@ -30,6 +35,10 @@ database.ref("location/city").set("San Antonio");
 database.ref("attributes").set({
     height: 73,
     weight: 180
+}).then(() => {
+    console.log("attributes data is saved");    
+}).catch((e) => {
+    console.log(`this didn't work: ${e}`);    
 });
 
 console.log("I made a request to change the data.");

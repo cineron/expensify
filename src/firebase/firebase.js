@@ -13,24 +13,70 @@ firebase.initializeApp(config);
 
 const database = firebase.database();
 
-database.ref().set({
-    name: "Andrew Wilson",
-    age: 36,
-    stressLevel: 6,
-    job: {
-        title: "Software Developer",
-        company: "Google"
-    },
-    location: {
-        city: "Austin",
-        country: "United States"
-    }
-}).then(() => {
-    console.log("data is saved");
+//---> Using "once" getting data either succeeds or fails
+// database.ref() //ref("location/city") //for specific item
+// .once("value")
+// .then((snapshot) => {
+//     const val = snapshot.val();
+//     console.log(val);
     
-}).catch((e) => {
-    console.log(`this failed ${e}`);
-});
+// })
+// .catch((e) => {
+//     console.log("Error fetching data:", e);
+    
+// });
+
+//---> Using a subscription method
+// const onValueChange = database.ref()
+//     .on("value",(snapshot) => {
+//         console.log(snapshot.val());        
+//     }, (e) => {
+//         console.log("error fetching data:", e);    
+//     });
+// setTimeout(() =>{
+//     database.ref("age").set(36);
+// }, 3500);
+// setTimeout(() =>{
+//     database.ref().off(onValueChange);
+// }, 7000);
+// setTimeout(() =>{
+//     database.ref("age").set(51);
+// }, 10000);
+
+database.ref()
+    .on("value", (snapshot) => {
+        const val = snapshot.val();
+        console.log(val);        
+        console.log(`${val.name} is a ${val.job.title}.`);
+    }, (e) => {
+        console.log("error fetching data:", e);
+    });
+    
+setTimeout(() => {
+    database.ref("age").set(36);
+}, 3500);
+
+
+
+
+// database.ref().set({
+//     name: "Andrew Wilson",
+//     age: 36,
+//     stressLevel: 6,
+//     job: {
+//         title: "Software Developer",
+//         company: "Google"
+//     },
+//     location: {
+//         city: "Austin",
+//         country: "United States"
+//     }
+// }).then(() => {
+//     console.log("data is saved");
+    
+// }).catch((e) => {
+//     console.log(`this failed ${e}`);
+// });
 
 // database.ref("isSingle").set(null); \\ using set(null) to remove data
 
@@ -42,8 +88,8 @@ database.ref().set({
 //     console.log("Remove failed: " + error.message);
 // });
 
-database.ref().update({
-    "job/company" : "Amazon",
-    "location/city": "Seattle",
-    stressLevel: 9
-});
+// database.ref().update({
+//     "job/company" : "Amazon",
+//     "location/city": "Seattle",
+//     stressLevel: 9
+// });

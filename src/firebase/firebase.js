@@ -12,26 +12,61 @@ const config = {
 firebase.initializeApp(config);
 
 const database = firebase.database();
+// ===== child_removed subscription =====
+database.ref("expenses").on("child_removed", (snapshot) => {
+    console.log(snapshot.key, snapshot.val());    
+});
+
+// ===== child_changed subscription =====
+database.ref("expenses").on("child_changed", (snapshot) => {
+    console.log(snapshot.key, snapshot.val());    
+});
+
+// ===== child_added subscription =====
+database.ref("expenses").on("child_added", (snapshot) => {
+    console.log(snapshot.key, snapshot.val());    
+});
+
+
+
+//==== subscribes to Firebase for changes in data
+// const onValueChange = database.ref()
+//     .on("value", (snapshot) => {
+//         const expenses = [];
+//         snapshot.forEach((childSnapshot) => {
+//             expenses.push({
+//                 id: childSnapshot.key, 
+//                 ...childSnapshot.val()
+//             });
+//         });
+//         console.log(expenses);
+//     }, (error) => {
+//         console.log("error fetching data:",error);
+//     });
+//================================================
+
+// database.ref("expenses")
+//     .once("value")
+//     .then((snapshot) => {
+//         const expenses = [];
+//         snapshot.forEach((childSnapshot) => {
+//             expenses.push({
+//                 id: childSnapshot.key, 
+//                 ...childSnapshot.val()
+//             });
+//         });
+//         console.log(expenses);
+        
+//     });
 
 // Setup "expenses" with 3 items (description, note, amount, createdAt)
-database.ref("expenses").push({
-    description: "Rent",
-    note: "monthly rent note",
-    amount: 115000,
-    createdAt: 123456
-});
-database.ref("expenses").push({
-    description: "Water",
-    note: "city water bill",
-    amount: 5500,
-    createdAt: 465321
-});
-database.ref("expenses").push({
-    description: "Groceries",
-    note: "",
-    amount: 25000,
-    createdAt: 9876542
-});
+// database.ref("expenses").push({
+//     description: "Rent",
+//     note: "monthly rent note",
+//     amount: 115000,
+//     createdAt: 123456
+// });
+
 
 //---> Using "once" getting data either succeeds or fails
 // database.ref() //ref("location/city") //for specific item

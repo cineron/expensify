@@ -28,17 +28,12 @@ database.ref().set({
     console.log(`this failed ${e}`);
 });
 
-// database.ref().set("this is my data.");
+// database.ref("isSingle").set(null); \\ using set(null) to remove data
 
-database.ref("age").set(27);
-database.ref("location/city").set("San Antonio");
-database.ref("attributes").set({
-    height: 73,
-    weight: 180
-}).then(() => {
-    console.log("attributes data is saved");    
-}).catch((e) => {
-    console.log(`this didn't work: ${e}`);    
-});
-
-console.log("I made a request to change the data.");
+// database.ref().remove()
+// .then(() => {
+//     console.log("Remove succeeded.");
+// })
+// .catch((error) => {
+//     console.log("Remove failed: " + error.message);
+// });

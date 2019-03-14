@@ -16,7 +16,11 @@ const database = firebase.database();
 database.ref().set({
     name: "Andrew Wilson",
     age: 36,
-    isSingle: true,
+    stressLevel: 6,
+    job: {
+        title: "Software Developer",
+        company: "Google"
+    },
     location: {
         city: "Austin",
         country: "United States"
@@ -37,3 +41,9 @@ database.ref().set({
 // .catch((error) => {
 //     console.log("Remove failed: " + error.message);
 // });
+
+database.ref().update({
+    "job/company" : "Amazon",
+    "location/city": "Seattle",
+    stressLevel: 9
+});

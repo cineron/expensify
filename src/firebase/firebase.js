@@ -13,6 +13,26 @@ firebase.initializeApp(config);
 
 const database = firebase.database();
 
+// Setup "expenses" with 3 items (description, note, amount, createdAt)
+database.ref("expenses").push({
+    description: "Rent",
+    note: "monthly rent note",
+    amount: 115000,
+    createdAt: 123456
+});
+database.ref("expenses").push({
+    description: "Water",
+    note: "city water bill",
+    amount: 5500,
+    createdAt: 465321
+});
+database.ref("expenses").push({
+    description: "Groceries",
+    note: "",
+    amount: 25000,
+    createdAt: 9876542
+});
+
 //---> Using "once" getting data either succeeds or fails
 // database.ref() //ref("location/city") //for specific item
 // .once("value")
@@ -43,18 +63,18 @@ const database = firebase.database();
 //     database.ref("age").set(51);
 // }, 10000);
 
-database.ref()
-    .on("value", (snapshot) => {
-        const val = snapshot.val();
-        console.log(val);        
-        console.log(`${val.name} is a ${val.job.title}.`);
-    }, (e) => {
-        console.log("error fetching data:", e);
-    });
+// database.ref()
+//     .on("value", (snapshot) => {
+//         const val = snapshot.val();
+//         console.log(val);        
+//         console.log(`${val.name} is a ${val.job.title}.`);
+//     }, (e) => {
+//         console.log("error fetching data:", e);
+//     });
     
-setTimeout(() => {
-    database.ref("age").set(36);
-}, 3500);
+// setTimeout(() => {
+//     database.ref("age").set(36);
+// }, 3500);
 
 
 

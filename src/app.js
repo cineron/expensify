@@ -5,13 +5,14 @@ import AppRouter from "./routers/AppRouter";
 import { Provider } from "react-redux";
 //Redux imports
 import configureStore from "./store/configureStore";
-import { addExpense } from "./actions/expenses";
-import { setTextFilter } from "./actions/filters";
-import getVisibleExpenses from "./selectors/expenses";
+// import { addExpense } from "./actions/expenses";
+// import { setTextFilter } from "./actions/filters";
+// import getVisibleExpenses from "./selectors/expenses";
 import "./styles/styles.scss";
 import "normalize.css/normalize.css";
 import "react-dates/lib/css/_datepicker.css";
 import "./firebase/firebase";
+// import "./playground/promises";
 
 const store = configureStore();
 
